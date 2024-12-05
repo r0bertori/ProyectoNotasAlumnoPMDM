@@ -11,167 +11,72 @@
     >
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvSeleccionAlumno"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/seleccion_asignatura"
-        android:textColor="@color/colorPrimary"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        android:text="Selección de Asignatura"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        android:textSize="22sp" />
 
-    <Button
-        android:id="@+id/btnPmdm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:layout_marginTop="20dp"
-        android:paddingTop="0dp"
-        android:paddingBottom="0dp"
-        android:text="@string/pmdm"
-        android:textAlignment="textStart"
-        android:textColor="@color/black"
-        android:textSize="15sp"
+    <ScrollView
+        android:id="@+id/svAsignaturas"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="13dp"
+        app:layout_constraintBottom_toTopOf="@+id/etAlumnoSeleccionado"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnVolverSeleccionAsignatura" />
+        app:layout_constraintTop_toBottomOf="@+id/tvSeleccionAlumno">
 
-    <Button
-        android:id="@+id/btnAsgAd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
+        <LinearLayout
+            android:id="@+id/layoutButtons"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="12dp" />
 
-        android:paddingTop="0dp"
-        android:paddingBottom="0dp"
-        android:text="@string/ad"
-        android:textAlignment="textStart"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnPmdm" />
-
-    <Button
-        android:id="@+id/btnAsgPsp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-
-        android:paddingTop="0dp"
-        android:paddingBottom="0dp"
-        android:text="@string/psp"
-        android:textAlignment="textStart"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAsgAd" />
-
-    <Button
-        android:id="@+id/btnAsgDi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-
-        android:paddingTop="0dp"
-        android:paddingBottom="0dp"
-        android:text="@string/di"
-        android:textAlignment="textStart"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAsgPsp" />
-
-    <Button
-        android:id="@+id/btnAsgSge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-
-        android:paddingTop="0dp"
-        android:paddingBottom="0dp"
-        android:text="@string/sge"
-        android:textAlignment="textStart"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAsgDi" />
-
-    <Button
-        android:id="@+id/btnAsgIacc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-
-        android:paddingTop="0dp"
-        android:paddingBottom="0dp"
-        android:text="@string/iacc"
-        android:textAlignment="textStart"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAsgSge" />
-
-    <Button
-        android:id="@+id/btnAsgIos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:paddingTop="0dp"
-        android:paddingBottom="0dp"
-        android:text="@string/ios"
-        android:gravity="start"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAsgIacc" />
-
+    </ScrollView>
 
     <EditText
-        android:id="@+id/edSelAss"
+        android:id="@+id/etAlumnoSeleccionado"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnAceptar"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        app:layout_constraintBottom_toTopOf="@+id/llforButtons"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/llforButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:enabled="false"
-        />
-
-    <Button
-        android:id="@+id/btnAceptar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorPrimary"
-        android:text="@string/aceptar"
-        android:layout_marginRight="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btnCancel"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        android:padding="10dp"
+        >
 
-    <Button
-        android:id="@+id/btnCancel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:backgroundTint="@color/colorPrimary"
-        android:text="@string/cancelar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        <Button
+            android:id="@+id/btnAceptar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@android:color/holo_red_light"
+            android:text="Aceptar"
+            />
 
-        app:layout_constraintStart_toEndOf="@id/btnAceptar" />
-
-    <Button
-        android:id="@+id/btnVolverSeleccionAsignatura"
-        android:padding="0dp"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:textSize="20sp"
-        android:text="@string/volver"
-        android:backgroundTint="@color/colorPrimary"
-        tools:layout_editor_absoluteY="2dp"
-        />
+        <Button
+            android:id="@+id/btnCancelar"
+            android:layout_width="0dp"
+            android:layout_marginStart="15dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@android:color/holo_red_light"
+            android:text="Cancelar"
+            />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

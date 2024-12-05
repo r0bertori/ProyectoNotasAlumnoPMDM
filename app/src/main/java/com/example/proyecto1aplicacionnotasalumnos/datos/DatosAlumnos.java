@@ -18,6 +18,13 @@ public class DatosAlumnos {
             "Isabel García"
     );
 
-
+    public static List<String> asignaturas = Arrays.asList(
+            "PMDM",
+            "AD",
+            "PSP",
+            "DI",
+            "SGE",
+            "IACC"
+    );
 
 }

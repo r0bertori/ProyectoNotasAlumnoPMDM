@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.activity.ComponentActivity;
@@ -13,90 +14,59 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.proyecto1aplicacionnotasalumnos.datos.DatosAlumnos;
+
 public class SeleccionAsignatura extends ComponentActivity {
 
-    private Button btnPmdm;
-    private Button btnAsgAd;
-    private Button btnAsgPsp;
-    private Button btnAsgDi;
-    private Button btnAsgSge;
-    private Button btnAsgIacc;
-    private Button btnAsgIos;
-    private EditText edSelAss;
+
+    private LinearLayout layoutScrollView;
+    private Button btnCancelar;
     private Button btnAceptar;
-    private Button btnCancel;
-    private Button btnVolver;
+    private EditText etAlumnoSeleccionado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);setContentView(R.layout.activity_seleccion_asignatura);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_seleccion_asignatura);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        btnPmdm = findViewById(R.id.btnPmdm);
-        btnAsgAd = findViewById(R.id.btnAsgAd);
-        btnAsgPsp = findViewById(R.id.btnAsgPsp);
-        btnAsgDi = findViewById(R.id.btnAsgDi);
-        btnAsgSge = findViewById(R.id.btnAsgSge);
-        btnAsgIacc = findViewById(R.id.btnAsgIacc);
-        edSelAss = findViewById(R.id.edSelAss);
-        btnAsgIos = findViewById(R.id.btnAsgIos);
+        layoutScrollView = findViewById(R.id.layoutButtons);
+        btnCancelar = findViewById(R.id.btnCancelar);
         btnAceptar = findViewById(R.id.btnAceptar);
-        btnCancel = findViewById(R.id.btnCancel);
-        btnVolver = findViewById(R.id.btnVolverSeleccionAsignatura);
+        etAlumnoSeleccionado = findViewById(R.id.etAlumnoSeleccionado);
 
-        btnPmdm.setOnClickListener(view -> {
-            edSelAss.setText("PMDM");
-        });
+        for (String asignatura : DatosAlumnos.asignaturas) {
 
-        btnAsgAd.setOnClickListener(view -> {
-            edSelAss.setText("AD");
-        });
+            Button btnAlumno = new Button(this);
+            btnAlumno.setText(asignatura);
 
-        btnAsgPsp.setOnClickListener(view -> {
-            edSelAss.setText("PSP");
-        });
+            // Listener para enviar el contenido de la persona a través del intent
+            btnAlumno.setOnClickListener(v -> {
+                etAlumnoSeleccionado.setText(asignatura);
+            });
 
-        btnAsgDi.setOnClickListener(view -> {
-            edSelAss.setText("DI");
-        });
+            layoutScrollView.addView(btnAlumno);
 
-        btnAsgSge.setOnClickListener(view -> {
-            edSelAss.setText("SGE");
-        });
+        }
 
-        btnAsgIacc.setOnClickListener(view -> {
-            edSelAss.setText("IACC");
-        });
-
-        btnAsgIos.setOnClickListener(view -> {
-            edSelAss.setText("IOS");
-        });
-
-        btnAceptar.setOnClickListener(view -> {
-            String asignatura = edSelAss.getText().toString();
-            if (asignatura.isEmpty()) {
-                Toast.makeText(this, "Por favor, selecciona una asignatura", Toast.LENGTH_SHORT).show();
-            } else {
-                Intent intent = new Intent();
-                intent.putExtra("asigantura", asignatura);
-                setResult(RESULT_OK, intent);
-                finish();
-            }
-        });
-
-        btnCancel.setOnClickListener(view -> {
+        // Botón aceptar
+        btnAceptar.setOnClickListener(v -> {
+            Intent resultado = new Intent();
+            resultado.putExtra("alumno", etAlumnoSeleccionado.getText().toString());
+            setResult(RESULT_OK, resultado);
             finish();
         });
 
-        btnVolver.setOnClickListener(v -> {
+        // Botón cancelar
+        btnCancelar.setOnClickListener(v -> {
+            setResult(RESULT_CANCELED);
             finish();
         });
 
     }
-
 }

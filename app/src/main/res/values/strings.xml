@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Proyecto1AplicacionNotasAlumnos</string>
+    <string name="tituloConsultaNotas">Consulta de notas por alumno</string>
+    <string name="registro_de_nota">Registro de nota</string>
+    <string name="selecciona_el_alumno">Selecciona el alumno</string>
+    <string name="selecciona_nel_alumno">Selecciona \nel alumno</string>
+    <string name="selecciona_la_asignatura">Selecciona la asignatura</string>
+    <string name="seleccionar_nasignatura">Seleccionar \nAsignatura</string>
+    <string name="nota_examen">Nota examen</string>
+    <string name="nota_de_actividades">Nota de actividades</string>
+    <string name="calcular_nnota">Calcular \nNota</string>
+    <string name="guardar_ndatos">Guardar\nDatos</string>
+    <string name="limpiar_ndatos">Limpiar\nDatos</string>
+    <string name="pmdm">PMDM</string>
+    <string name="ad">AD</string>
+    <string name="psp">PSP</string>
+    <string name="di">DI</string>
+    <string name="sge">SGE</string>
+    <string name="iacc">IACC</string>
+    <string name="ios">IOS</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="seleccion_asignatura">Selección Asignatura</string>
+    <string name="volver"><![CDATA[<-]]></string>
+</resources>

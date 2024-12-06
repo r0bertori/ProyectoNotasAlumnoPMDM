@@ -6,7 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginHorizontal="20dp"
-    android:layout_marginVertical="50dp">
+    android:layout_marginVertical="8dp"
+
+    >
 
     <TextView
         android:id="@+id/tvRegistroAl"
@@ -16,7 +18,7 @@
         android:textColor="@color/colorPrimary"
         android:textSize="22sp"
         android:textStyle="bold"
-        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -108,68 +110,75 @@
         android:inputType="numberDecimal"
         />
 
-    <Button
-        android:id="@+id/btnCalNot"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/llCalNote"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:backgroundTint="@color/colorPrimary"
-        android:onClick="calcularNota"
-        android:text="@string/calcular_nnota"
-
+        android:padding="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edNotaExam" />
+        app:layout_constraintTop_toBottomOf="@+id/edNotaExam">
 
-    <EditText
-        android:id="@+id/edVacio"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
+        <Button
+            android:id="@+id/btnCalNot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimary"
+            android:onClick="calcularNota"
+            android:text="@string/calcular_nnota" />
 
-        app:layout_constraintBottom_toBottomOf="@+id/btnCalNot"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnCalNot"
-        app:layout_constraintTop_toTopOf="@+id/btnCalNot"
-        android:enabled="false"
+        <EditText
+            android:id="@+id/edVacio"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:enabled="false" />
 
-        />
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/btnSaveDta"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:id="@+id/topButtons"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorPrimary"
-        android:onClick="guardarDta"
-
-        android:text="@string/guardar_ndatos"
+        android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btnClearDta"
-
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btnClearDta"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:backgroundTint="@color/colorPrimary"
-
-        android:onClick="limpiarDta"
-        android:text="@string/limpiar_ndatos"
-        app:layout_constraintBottom_toBottomOf="parent"
-
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btnSaveDta" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/btnSaveDta"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/colorPrimary"
+            android:onClick="guardarDta"
+            android:text="@string/guardar_ndatos" />
+
+        <Button
+            android:id="@+id/btnClearDta"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/colorPrimary"
+            android:onClick="limpiarDta"
+            android:text="@string/limpiar_ndatos"
+
+            />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnVolverRegistroNota"
-        android:padding="0dp"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:textSize="20sp"
-        android:text="@string/volver"
-        android:onClick="volverPantallaInicio"
         android:backgroundTint="@color/colorPrimary"
-        tools:layout_editor_absoluteY="2dp" />
+        android:onClick="volverPantallaInicio"
+        android:padding="0dp"
+        android:text="@string/volver"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     
 
 </androidx.constraintlayout.widget.ConstraintLayout>

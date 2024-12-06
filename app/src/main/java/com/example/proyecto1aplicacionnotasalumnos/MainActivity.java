@@ -1,5 +1,6 @@
 package com.example.proyecto1aplicacionnotasalumnos;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -46,16 +47,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void mandarCorreo(View view) {
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("message/rfc822"); // MIME o tipo de datos específicos para correos electrónicos
-        intent.putExtra(Intent.EXTRA_EMAIL, new String[] {"ayuda@uem.es"});
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Petición de ayuda");
-        intent.putExtra(Intent.EXTRA_TEXT, "Motivo : ");
-
-        // Puede fallar porque no reconozca el cliente gmail, usamos un seleccionador de aplicaciones
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        // Metemos toda la información del email en el setData porque algunos clientes de correo ignoran los 'Extra's
+        intent.setData(Uri.parse("mailto:ayuda@uem.es"
+                + "?subject=" + Uri.encode("Petición de ayuda")
+                + "&body=" + Uri.encode("Motivo : ")));
         if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+
+        try {
             startActivity(Intent.createChooser(intent, "Elige un cliente de correo"));
-        } else {
+        } catch (ActivityNotFoundException e) {
             Toast.makeText(this, "No se encontró ninguna app de correo electrónico", Toast.LENGTH_SHORT).show();
         }
     }

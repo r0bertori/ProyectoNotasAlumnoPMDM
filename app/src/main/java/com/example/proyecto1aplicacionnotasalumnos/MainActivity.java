@@ -32,8 +32,23 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        Button btnVerNota = findViewById(R.id.btnVerNota);
-        Button btnRegistro = findViewById(R.id.btnRegistro);
+        btnVerNota = findViewById(R.id.btnVerNota);
+        btnRegistro = findViewById(R.id.btnRegistro);
+
+        comprobarExisteFichero();
+    }
+
+    private void comprobarExisteFichero() {
+        File file = new File(getExternalFilesDir(null), "alumnos.dat");
+        if (file.exists()) {
+            btnVerNota.setText("Consultar notas");
+            btnVerNota.setEnabled(true);
+            btnVerNota.setBackgroundColor(getColor(R.color.colorPrimary));
+        } else {
+            btnVerNota.setText("Registra al menos una nota");
+            btnVerNota.setEnabled(false);
+            btnVerNota.setBackgroundColor(getColor(R.color.disabledButton));
+        }
     }
 
     public void registrarNota(View view) {

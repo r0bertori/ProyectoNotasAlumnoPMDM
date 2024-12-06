@@ -45,7 +45,6 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/colorPrimary"
         android:onClick="consultarNota"
-        android:text="Consultar nota"
         android:textColor="@android:color/white"
         android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/txtMandarCorreo"

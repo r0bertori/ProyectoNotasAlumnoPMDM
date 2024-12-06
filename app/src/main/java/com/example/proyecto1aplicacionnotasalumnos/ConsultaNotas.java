@@ -66,6 +66,7 @@ public class ConsultaNotas extends AppCompatActivity {
 
     public void seleccionarAlumno(View view) {
         Intent intent = new Intent(ConsultaNotas.this, SeleccionAlumno.class);
+        intent.putExtra("vieneDeConsultarNotas", true);
         contrato.launch(intent);
     }
 

@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -98,13 +100,18 @@ public class SeleccionAlumno extends AppCompatActivity {
 
         }
 
-        // Botón aceptar
-        btnAceptar.setOnClickListener(v -> {
-            Intent resultado = new Intent();
-            resultado.putExtra("alumno", etAlumnoSeleccionado.getText().toString());
-            setResult(RESULT_OK, resultado);
-            finish();
+        btnAceptar.setOnClickListener(view -> {
+            String alumno = etAlumnoSeleccionado.getText().toString();
+            if (alumno.isEmpty()) {
+                Toast.makeText(this, "Por favor, selecciona un alumno", Toast.LENGTH_SHORT).show();
+            } else {
+                Intent intent = new Intent();
+                intent.putExtra("alumno", alumno);
+                setResult(RESULT_OK, intent);
+                finish();
+            }
         });
+
 
         // Botón cancelar
         btnCancelar.setOnClickListener(v -> {

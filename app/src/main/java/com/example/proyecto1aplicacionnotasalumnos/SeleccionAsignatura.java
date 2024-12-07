@@ -2,7 +2,6 @@ package com.example.proyecto1aplicacionnotasalumnos;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -22,7 +21,7 @@ public class SeleccionAsignatura extends ComponentActivity {
     private LinearLayout layoutScrollView;
     private Button btnCancelar;
     private Button btnAceptar;
-    private EditText etAlumnoSeleccionado;
+    private EditText etAsignaturaSeleccionada;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +37,7 @@ public class SeleccionAsignatura extends ComponentActivity {
         layoutScrollView = findViewById(R.id.layoutButtons);
         btnCancelar = findViewById(R.id.btnCancelar);
         btnAceptar = findViewById(R.id.btnAceptar);
-        etAlumnoSeleccionado = findViewById(R.id.etAlumnoSeleccionado);
+        etAsignaturaSeleccionada = findViewById(R.id.etAlumnoSeleccionado);
 
         for (String asignatura : DatosAlumnos.asignaturas) {
 
@@ -47,7 +46,7 @@ public class SeleccionAsignatura extends ComponentActivity {
 
             // Listener para enviar el contenido de la persona a través del intent
             btnAlumno.setOnClickListener(v -> {
-                etAlumnoSeleccionado.setText(asignatura);
+                etAsignaturaSeleccionada.setText(asignatura);
             });
 
             layoutScrollView.addView(btnAlumno);
@@ -55,12 +54,18 @@ public class SeleccionAsignatura extends ComponentActivity {
         }
 
         // Botón aceptar
-        btnAceptar.setOnClickListener(v -> {
-            Intent resultado = new Intent();
-            resultado.putExtra("asignatura", etAlumnoSeleccionado.getText().toString());
-            setResult(RESULT_OK, resultado);
-            finish();
+        btnAceptar.setOnClickListener(view -> {
+            String asignatura = etAsignaturaSeleccionada.getText().toString();
+            if (asignatura.isEmpty()) {
+                Toast.makeText(this, "Por favor, selecciona una asignatura", Toast.LENGTH_SHORT).show();
+            } else {
+                Intent intent = new Intent();
+                intent.putExtra("asignatura", asignatura);
+                setResult(RESULT_OK, intent);
+                finish();
+            }
         });
+
 
         // Botón cancelar
         btnCancelar.setOnClickListener(v -> {

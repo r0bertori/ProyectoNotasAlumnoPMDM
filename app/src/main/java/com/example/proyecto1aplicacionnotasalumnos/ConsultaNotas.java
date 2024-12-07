@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -29,7 +30,6 @@ public class ConsultaNotas extends AppCompatActivity {
 
     private Button btnSeleccionarAlumno;
     private EditText etAlumnoSeleccionado;
-    private TextView tvDatosAlumno;
     private Button btnVolver;
 
     @Override
@@ -45,7 +45,6 @@ public class ConsultaNotas extends AppCompatActivity {
 
         btnSeleccionarAlumno = findViewById(R.id.btnSeleccionarAlumno);
         etAlumnoSeleccionado = findViewById(R.id.etAlumnoSeleccionado);
-        tvDatosAlumno = findViewById(R.id.tvDatosAlumno);
         btnVolver = findViewById(R.id.btnVolverConsultaNotas);
 
     }
@@ -71,20 +70,26 @@ public class ConsultaNotas extends AppCompatActivity {
     }
 
     public void leerDatos(String alumno) {
+        limpiarFragmentos();
         File fichero = new File(getExternalFilesDir(null), "alumnos.dat");
         boolean tieneDatos = false;
 
-        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fichero))) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fichero))) {
             boolean b = false;
             Alumno alum = null;
             while (!b) {
                 try {
                     alum = (Alumno) ois.readObject();
-                    String dato = alum.getAsignatura() + "," + alum.getNotaFinal();
-                    Log.d("deb2", dato);
                     if (etAlumnoSeleccionado.getText().toString().equals(alum.getNombre())) {
-                        tvDatosAlumno.setText(tvDatosAlumno.getText() + "\n"
-                        + alum.getAsignatura() + " " + alum.getNotaFinal());
+                        // Creamos un nuevo fragmento dinámico para cada asignatura y nota
+                        NotaFragment fragment = NotaFragment.newInstance(alum.getAsignatura(), alum.getNotaFinal());
+
+                        // Agregar el fragmento al contenedor
+                        getSupportFragmentManager()
+                                .beginTransaction()
+                                .add(R.id.contenedorFragmentos, fragment)
+                                .commit();
+
                         tieneDatos = true;
                     }
                 } catch (IOException | ClassNotFoundException e) {
@@ -93,17 +98,21 @@ public class ConsultaNotas extends AppCompatActivity {
             }
 
             if (!tieneDatos) {
-                tvDatosAlumno.setText("El alumno seleccionado no tiene notas registradas.");
+                Toast.makeText(this, "El alumno seleccionado no tiene notas registradas.", Toast.LENGTH_SHORT).show();
             }
 
         } catch (FileNotFoundException e) {
             Toast.makeText(this, "No se ha encontrado el fichero", Toast.LENGTH_SHORT).show();
-            Log.d("err1", "No se ha encontrado el fichero");
-            e.printStackTrace();
         } catch (IOException e) {
             Toast.makeText(this, "Error al leer el fichero", Toast.LENGTH_SHORT).show();
-            Log.d("err2", "No se ha encontrado el fichero");
-            e.printStackTrace();
+        }
+    }
+
+    private void limpiarFragmentos() {
+        for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+            if (fragment instanceof NotaFragment) {
+                getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+            }
         }
     }
 

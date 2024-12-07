@@ -1,6 +1,8 @@
 package com.example.proyecto1aplicacionnotasalumnos;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -30,8 +32,23 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        Button btnVerNota = findViewById(R.id.btnVerNota);
-        Button btnRegistro = findViewById(R.id.btnRegistro);
+        btnVerNota = findViewById(R.id.btnVerNota);
+        btnRegistro = findViewById(R.id.btnRegistro);
+
+        comprobarExisteFichero();
+    }
+
+    private void comprobarExisteFichero() {
+        File file = new File(getExternalFilesDir(null), "alumnos.dat");
+        if (file.exists()) {
+            btnVerNota.setText("Consultar notas");
+            btnVerNota.setEnabled(true);
+            btnVerNota.setBackgroundColor(getColor(R.color.colorPrimary));
+        } else {
+            btnVerNota.setText("Registra al menos una nota");
+            btnVerNota.setEnabled(false);
+            btnVerNota.setBackgroundColor(getColor(R.color.disabledButton));
+        }
     }
 
     public void registrarNota(View view) {
@@ -44,4 +61,20 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void mandarCorreo(View view) {
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        // Metemos toda la información del email en el setData porque algunos clientes de correo ignoran los 'Extra's
+        intent.setData(Uri.parse("mailto:ayuda@uem.es"
+                + "?subject=" + Uri.encode("Petición de ayuda")
+                + "&body=" + Uri.encode("Motivo : ")));
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+
+        try {
+            startActivity(Intent.createChooser(intent, "Elige un cliente de correo"));
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(this, "No se encontró ninguna app de correo electrónico", Toast.LENGTH_SHORT).show();
+        }
+    }
 }

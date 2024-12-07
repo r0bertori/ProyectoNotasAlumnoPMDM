@@ -5,119 +5,113 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginHorizontal="20dp"
-    android:layout_marginVertical="8dp"
-
+    android:padding="16dp"
     >
 
     <TextView
         android:id="@+id/tvRegistroAl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
         android:text="@string/registro_de_nota"
         android:textColor="@color/colorPrimary"
         android:textSize="22sp"
         android:textStyle="bold"
-        android:layout_marginStart="15dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="15dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
 
-    <EditText
-        android:id="@+id/edSelAl"
-        android:hint="@string/selecciona_el_alumno"
-
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btnSlectAl"
-        app:layout_constraintTop_toBottomOf="@+id/btnVolverRegistroNota"
-
-        android:layout_marginTop="20dp"
-        android:enabled="false"
-        />
-
-    <Button
-        android:id="@+id/btnSlectAl"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/llFieldsAlm"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorPrimary"
-        android:onClick="seletAlum"
-
-        android:text="@string/selecciona_nel_alumno"
-        app:layout_constraintBottom_toBottomOf="@+id/edSelAl"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/btnSelAss"
-
-        app:layout_constraintTop_toTopOf="@+id/edSelAl"
-
-        />
-
-    <EditText
-        android:id="@+id/edSelAss"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-
-        android:hint="@string/selecciona_la_asignatura"
-        app:layout_constraintEnd_toStartOf="@id/btnSelAss"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edSelAl"
+        app:layout_constraintTop_toBottomOf="@+id/tvRegistroAl"
+        android:layout_marginTop="15dp"
+        >
 
-        android:layout_marginTop="20dp"
-        android:enabled="false"
-        />
+        <EditText
+            android:id="@+id/edSelAl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:enabled="false"
+            android:hint="@string/selecciona_el_alumno"
 
-    <Button
-        android:id="@+id/btnSelAss"
-        android:layout_width="wrap_content"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btnSlectAl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/colorPrimary"
+            android:onClick="seletAlum"
+            android:text="@string/selecciona_nel_alumno" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llFieldsAsg"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorPrimary"
-        android:onClick="seletAss"
-
-        android:text="@string/seleccionar_nasignatura"
-        app:layout_constraintBottom_toBottomOf="@+id/edSelAss"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/edSelAss" />
-
-    <EditText
-        android:id="@+id/edNotaExam"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-
-        android:hint="@string/nota_examen"
-        app:layout_constraintEnd_toStartOf="@id/edNotaActividades"
-
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edSelAss"
+        app:layout_constraintTop_toBottomOf="@+id/llFieldsAlm">
 
-        android:layout_marginTop="20dp"
-        android:inputType="numberDecimal"
-        />
+        <EditText
+            android:id="@+id/edSelAss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:enabled="false"
+            android:hint="@string/selecciona_la_asignatura" />
 
-    <EditText
-        android:id="@+id/edNotaActividades"
-        android:hint="@string/nota_de_actividades"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
+        <Button
+            android:id="@+id/btnSelAss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/colorPrimary"
+            android:onClick="seletAss"
+            android:text="@string/seleccionar_nasignatura" />
 
-        app:layout_constraintBottom_toBottomOf="@+id/edNotaExam"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/edNotaExam"
-        app:layout_constraintTop_toTopOf="@+id/edNotaExam"
+    </LinearLayout>
 
-        android:layout_marginStart="20dp"
-        android:inputType="numberDecimal"
-        />
+    <LinearLayout
+        android:id="@+id/llFieldsNota"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llFieldsAsg"
+        >
+
+        <EditText
+            android:id="@+id/edNotaExam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/nota_examen"
+            android:inputType="numberDecimal" />
+
+        <EditText
+            android:id="@+id/edNotaActividades"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_weight="1"
+            android:hint="@string/nota_de_actividades"
+            android:inputType="numberDecimal" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/llCalNote"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edNotaExam">
+        app:layout_constraintTop_toBottomOf="@+id/llFieldsNota">
 
         <Button
             android:id="@+id/btnCalNot"
@@ -140,7 +134,6 @@
         android:id="@+id/topButtons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">

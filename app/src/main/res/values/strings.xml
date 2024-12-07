@@ -22,4 +22,26 @@
     <string name="cancelar">Cancelar</string>
     <string name="seleccion_asignatura">Selección Asignatura</string>
     <string name="volver"><![CDATA[<-]]></string>
+    <string name="txtBtnSeleccionarAlumno">Seleccionar alumno</string>
+    <string name="registrar_nota">Registrar nota</string>
+    <string name="texto_mandar_correo">¿Tienes alguna duda?\nHaz clic aquí para mandarnos un correo</string>
+    <string name="seleccion_de_asignatura">Selección de Asignatura</string>
+    <string name="asignatura">Asignatura: --</string>
+    <string name="nota">Nota: --</string>
+    <string name="errorNotas">La nota tiene que estar entre 0 y 10.</string>
+    <string name="consultarNotas">Consultar Notas</string>
+    <string name="registraUnaNota">Registra al menos una nota</string>
+    <string name="eligeAppCorreo">Elige un cliente de correo</string>
+    <string name="errorAppCorreo">No se encontró ninguna app de correo electrónico</string>
+    <string name="rutaFicheroDat">alumnos.dat</string>
+    <string name="fileNotFound">No se ha encontrado el fichero</string>
+    <string name="readingError">Error al leer el fichero</string>
+    <string name="writingError">Error al escribir el fichero</string>
+    <string name="alumno">alumno</string>
+    <string name="completaCampos">Por favor, completa todos los campos</string>
+    <string name="datosGuardados">Datos guardados correctamente</string>
+    <string name="pedirCamposNecesarios">Por favor, completa todos los campos necesarios (nota examen y nota actividades)</string>
+    <string name="vieneDeConsultarNotas">vieneDeConsultarNotas</string>
+    <string name="seleccionaAlumno">Por favor, selecciona un alumno</string>
+    <string name="seleccionaAsignatura">Por favor, selecciona una asignatura</string>
 </resources>

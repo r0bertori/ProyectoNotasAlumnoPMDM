@@ -47,7 +47,7 @@
             android:layout_weight="0"
             android:backgroundTint="@color/colorPrimary"
             android:onClick="seleccionarAlumno"
-            android:text="Seleccionar alumno" />
+            android:text="@string/txtBtnSeleccionarAlumno" />
 
     </LinearLayout>
 

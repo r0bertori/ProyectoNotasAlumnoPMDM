@@ -45,12 +45,12 @@ public class SeleccionAlumno extends AppCompatActivity {
         etAlumnoSeleccionado = findViewById(R.id.etAlumnoSeleccionado);
 
         // Vemos si se viene de 'ConsultaNotas'
-        Boolean vieneDeConsultarNotas = getIntent().getBooleanExtra("vieneDeConsultarNotas", false);
+        Boolean vieneDeConsultarNotas = getIntent().getBooleanExtra(getString(R.string.vieneDeConsultarNotas), false);
 
         // Guardar alumnos que tienen datos registrados
         if (vieneDeConsultarNotas) {
             alumnosConRegistro = new ArrayList<>();
-            File fichero = new File(getExternalFilesDir(null), "alumnos.dat");
+            File fichero = new File(getExternalFilesDir(null), getString(R.string.rutaFicheroDat));
             try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fichero))){
                 boolean b = false;
                 Alumno alum = null;
@@ -103,10 +103,10 @@ public class SeleccionAlumno extends AppCompatActivity {
         btnAceptar.setOnClickListener(view -> {
             String alumno = etAlumnoSeleccionado.getText().toString();
             if (alumno.isEmpty()) {
-                Toast.makeText(this, "Por favor, selecciona un alumno", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.seleccionaAlumno), Toast.LENGTH_SHORT).show();
             } else {
                 Intent intent = new Intent();
-                intent.putExtra("alumno", alumno);
+                intent.putExtra(getString(R.string.alumno), alumno);
                 setResult(RESULT_OK, intent);
                 finish();
             }

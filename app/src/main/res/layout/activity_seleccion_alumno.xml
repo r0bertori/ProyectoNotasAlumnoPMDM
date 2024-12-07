@@ -62,8 +62,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="@android:color/holo_red_light"
-            android:text="Aceptar"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="@string/aceptar"
             />
 
         <Button
@@ -73,8 +73,8 @@
             android:layout_weight="1"
 
             android:layout_marginStart="15dp"
-            android:backgroundTint="@android:color/holo_red_light"
-            android:text="Cancelar"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="@string/cancelar"
             />
     </LinearLayout>
 

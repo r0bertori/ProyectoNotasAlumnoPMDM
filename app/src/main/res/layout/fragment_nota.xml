@@ -7,7 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/holo_red_light"
+        android:background="@color/colorPrimary"
         android:orientation="vertical"
         android:padding="16dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,7 +17,7 @@
             android:id="@+id/tvAsignatura"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Asignatura: --"
+            android:text="@string/asignatura"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -25,7 +25,7 @@
             android:id="@+id/tvNota"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nota: --"
+            android:text="@string/nota"
             android:textSize="14sp" />
     </LinearLayout>
 

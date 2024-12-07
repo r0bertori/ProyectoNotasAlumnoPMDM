@@ -32,8 +32,6 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-
-
         btnVerNota = findViewById(R.id.btnVerNota);
         btnRegistro = findViewById(R.id.btnRegistro);
 
@@ -41,13 +39,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void comprobarExisteFichero() {
-        File file = new File(getExternalFilesDir(null), "alumnos.dat");
+        File file = new File(getExternalFilesDir(null), getString(R.string.rutaFicheroDat));
         if (file.exists()) {
-            btnVerNota.setText("Consultar notas");
+            btnVerNota.setText(getString(R.string.consultarNotas));
             btnVerNota.setEnabled(true);
             btnVerNota.setBackgroundColor(getColor(R.color.colorPrimary));
         } else {
-            btnVerNota.setText("Registra al menos una nota");
+            btnVerNota.setText(getString(R.string.registraUnaNota));
             btnVerNota.setEnabled(false);
             btnVerNota.setBackgroundColor(getColor(R.color.disabledButton));
         }
@@ -74,9 +72,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         try {
-            startActivity(Intent.createChooser(intent, "Elige un cliente de correo"));
+            startActivity(Intent.createChooser(intent, getString(R.string.eligeAppCorreo)));
         } catch (ActivityNotFoundException e) {
-            Toast.makeText(this, "No se encontró ninguna app de correo electrónico", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.errorAppCorreo), Toast.LENGTH_SHORT).show();
         }
     }
 }

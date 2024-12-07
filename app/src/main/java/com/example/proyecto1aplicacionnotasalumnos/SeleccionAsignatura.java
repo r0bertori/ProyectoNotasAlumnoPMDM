@@ -57,7 +57,7 @@ public class SeleccionAsignatura extends ComponentActivity {
         btnAceptar.setOnClickListener(view -> {
             String asignatura = etAsignaturaSeleccionada.getText().toString();
             if (asignatura.isEmpty()) {
-                Toast.makeText(this, "Por favor, selecciona una asignatura", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.seleccionaAsignatura), Toast.LENGTH_SHORT).show();
             } else {
                 Intent intent = new Intent();
                 intent.putExtra("asignatura", asignatura);

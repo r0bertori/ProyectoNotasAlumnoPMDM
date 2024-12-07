@@ -55,7 +55,7 @@ public class ConsultaNotas extends AppCompatActivity {
             if (result.getResultCode() == Activity.RESULT_OK) {
                 Intent data = result.getData();
                 if (data != null) {
-                    String resultado = data.getStringExtra("alumno");
+                    String resultado = data.getStringExtra(getString(R.string.alumno));
                     etAlumnoSeleccionado.setText(resultado);
                     leerDatos(etAlumnoSeleccionado.getText().toString());
                 }
@@ -65,7 +65,7 @@ public class ConsultaNotas extends AppCompatActivity {
 
     public void seleccionarAlumno(View view) {
         Intent intent = new Intent(ConsultaNotas.this, SeleccionAlumno.class);
-        intent.putExtra("vieneDeConsultarNotas", true);
+        intent.putExtra(getString(R.string.vieneDeConsultarNotas), true);
         contrato.launch(intent);
     }
 
@@ -120,7 +120,5 @@ public class ConsultaNotas extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-
-    // Comentario para git
 
 }

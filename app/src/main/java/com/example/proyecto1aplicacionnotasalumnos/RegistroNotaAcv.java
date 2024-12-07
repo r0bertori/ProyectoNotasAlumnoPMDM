@@ -61,15 +61,6 @@ public class RegistroNotaAcv extends AppCompatActivity {
 
         rellenarLista();
 
-            /*File fichero = new File(getExternalFilesDir(null), "alumnos.dat");
-
-            if (fichero.exists()) {
-                Toast.makeText(this, "El fichero existe", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "El fichero NO existe", Toast.LENGTH_SHORT).show();
-
-            }*/
-
     }
 
     public void volverPantallaInicio(View view) {
@@ -78,7 +69,7 @@ public class RegistroNotaAcv extends AppCompatActivity {
     }
 
     private void rellenarLista() {
-        File fichero = new File(getExternalFilesDir(null), "alumnos.dat");
+        File fichero = new File(getExternalFilesDir(null), getString(R.string.rutaFicheroDat));
 
         try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fichero))) {
             boolean b = false;
@@ -93,12 +84,12 @@ public class RegistroNotaAcv extends AppCompatActivity {
                 }
             }
         } catch (FileNotFoundException e) {
-            Toast.makeText(this, "No se ha encontrado el fichero", Toast.LENGTH_SHORT).show();
-            Log.d("err1", "No se ha encontrado el fichero");
+            Toast.makeText(this, getString(R.string.fileNotFound), Toast.LENGTH_SHORT).show();
+            Log.d("err1", getString(R.string.fileNotFound));
             e.printStackTrace();
         } catch (IOException e) {
-            Toast.makeText(this, "Error al leer el fichero", Toast.LENGTH_SHORT).show();
-            Log.d("err2", "No se ha encontrado el fichero");
+            Toast.makeText(this, getString(R.string.readingError), Toast.LENGTH_SHORT).show();
+            Log.d("err2", getString(R.string.readingError));
             e.printStackTrace();
         }
     }
@@ -109,7 +100,7 @@ public class RegistroNotaAcv extends AppCompatActivity {
                 if (result.getResultCode() == Activity.RESULT_OK) {
                     Intent data = result.getData();
                     if (data != null) {
-                        String resultado = data.getStringExtra("alumno");
+                        String resultado = data.getStringExtra(getString(R.string.alumno));
                         edSelAl.setText(resultado);
                         btnSelAlm.setEnabled(false);
                     }
@@ -128,7 +119,7 @@ public class RegistroNotaAcv extends AppCompatActivity {
                 if (result.getResultCode() == Activity.RESULT_OK) {
                     Intent data = result.getData();
                     if (data != null) {
-                        String resultado = data.getStringExtra("asignatura");
+                        String resultado = data.getStringExtra(getString(R.string.asignatura));
                         edSelAss.setText(resultado);
                         btnSelAss.setEnabled(false);
                     }
@@ -148,9 +139,8 @@ public class RegistroNotaAcv extends AppCompatActivity {
                 || edSelAss.getText().toString().isEmpty()
                 || edNotaExam.getText().toString().isEmpty()
                 || edNotaActividades.getText().toString().isEmpty()) {
-            Toast.makeText(this, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.completaCampos), Toast.LENGTH_SHORT).show();
         } else {
-            // TODO guardar los datos en fichero
             String alumnoSeleccionado = edSelAl.getText().toString();
             String asignaturaSeleccionada = edSelAss.getText().toString();
             Double notaFinal = Double.parseDouble(edVacio.getText().toString());
@@ -169,13 +159,12 @@ public class RegistroNotaAcv extends AppCompatActivity {
         // TODO getResources().openRawResource(R.raw.alumnos)
         String TAG = "deb";
         boolean alumnoCoincide = false;
-        File fichero = new File(getExternalFilesDir(null), "alumnos.dat");
+        File fichero = new File(getExternalFilesDir(null), getString(R.string.rutaFicheroDat));
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fichero))) {
 
             for (Alumno a : alumnos) {
                 if (a.getNombre().equals(alumno.getNombre()) && a.getAsignatura().equals(alumno.getAsignatura())) {
                     alumnoCoincide = true;
-                    Toast.makeText(this, "ASIGNATURA ENCONTRADA", Toast.LENGTH_SHORT).show();
                     a.setNotaFinal(alumno.getNotaFinal());
                 }
             }
@@ -189,13 +178,13 @@ public class RegistroNotaAcv extends AppCompatActivity {
             }
 
             Log.d(TAG, fichero.getAbsolutePath().toString());
-            Toast.makeText(this, "Datos guardados correctamente", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.datosGuardados), Toast.LENGTH_SHORT).show();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            Toast.makeText(this, "No se ha encontrado el fichero", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.fileNotFound), Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             e.printStackTrace();
-            Toast.makeText(this, "Error al escribir en el fichero", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.writingError), Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -214,13 +203,17 @@ public class RegistroNotaAcv extends AppCompatActivity {
     }
 
     public void calcularNota(View view) {
+
+        Double notaExam = Double.parseDouble(edNotaExam.getText().toString());
+        Double notaActividades = Double.parseDouble((edNotaActividades.getText().toString()));
+
         if ( edNotaExam.getText().toString().isEmpty() && edNotaActividades.getText().toString().isEmpty()) {
-            Toast.makeText(this, "Por favor, completa todos los campos necesarios (nota examen y nota actividades)", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.pedirCamposNecesarios), Toast.LENGTH_SHORT).show();
+        } else if (notaExam < 0 || notaExam > 10 || notaActividades < 0 || notaActividades > 10) {
+            Toast.makeText(this, getString(R.string.errorNotas), Toast.LENGTH_SHORT).show();
         } else {
             // despues de calcular la nota se debe msotrar un mensaje y limpiar los campos
             btnCalNot.setEnabled(false);
-            Double notaExam = Double.parseDouble(edNotaExam.getText().toString());
-            Double notaActividades = Double.parseDouble(edNotaActividades.getText().toString());
             Double notaFinal;
             if (notaExam >= 4.5  && notaActividades >= 7.5) {
                 notaFinal = notaExam * 0.7 + notaActividades * 0.3;

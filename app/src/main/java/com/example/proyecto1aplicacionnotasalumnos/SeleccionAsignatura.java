@@ -57,7 +57,7 @@ public class SeleccionAsignatura extends ComponentActivity {
         // Botón aceptar
         btnAceptar.setOnClickListener(v -> {
             Intent resultado = new Intent();
-            resultado.putExtra("alumno", etAlumnoSeleccionado.getText().toString());
+            resultado.putExtra("asignatura", etAlumnoSeleccionado.getText().toString());
             setResult(RESULT_OK, resultado);
             finish();
         });

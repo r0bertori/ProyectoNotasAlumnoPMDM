@@ -128,7 +128,7 @@ public class RegistroNotaAcv extends AppCompatActivity {
                 if (result.getResultCode() == Activity.RESULT_OK) {
                     Intent data = result.getData();
                     if (data != null) {
-                        String resultado = data.getStringExtra("asigantura");
+                        String resultado = data.getStringExtra("asignatura");
                         edSelAss.setText(resultado);
                         btnSelAss.setEnabled(false);
                     }

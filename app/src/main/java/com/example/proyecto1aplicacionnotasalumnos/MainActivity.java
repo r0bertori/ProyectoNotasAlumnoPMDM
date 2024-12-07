@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+
+
         btnVerNota = findViewById(R.id.btnVerNota);
         btnRegistro = findViewById(R.id.btnRegistro);
 
